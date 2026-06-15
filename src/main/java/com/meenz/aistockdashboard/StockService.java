@@ -17,8 +17,7 @@ public class StockService {
     private String apiKey;
     
     public Stock getStock(String symbol) {
-
-        
+       
         String url =
                 "https://finnhub.io/api/v1/quote?symbol="
                         + symbol
