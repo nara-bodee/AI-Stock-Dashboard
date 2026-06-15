@@ -1,24 +1,36 @@
 package com.meenz.aistockdashboard;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class StockService {
 
+    private final RestClient restClient;
+
+    public StockService() {
+        this.restClient = RestClient.create();
+    }
+
+    @Value("${finnhub.api.key}")
+    private String apiKey;
+    
     public Stock getStock(String symbol) {
 
-        if (symbol.equalsIgnoreCase("AVGO")) {
-            return new Stock("AVGO", 310.50);
-        }
+        
+        String url =
+                "https://finnhub.io/api/v1/quote?symbol="
+                        + symbol
+                        + "&token="
+                        + apiKey;
 
-        if (symbol.equalsIgnoreCase("NVDA")) {
-            return new Stock("NVDA", 180.25);
-        }
+        FinnhubResponse response =
+                restClient.get()
+                        .uri(url)
+                        .retrieve()
+                        .body(FinnhubResponse.class);
 
-        if (symbol.equalsIgnoreCase("TSLA")) {
-            return new Stock("TSLA", 340.10);
-        }
-
-        return new Stock(symbol, 0);
+        return new Stock(symbol, response.getC());
     }
 }
