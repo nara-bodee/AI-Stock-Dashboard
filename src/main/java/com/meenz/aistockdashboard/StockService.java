@@ -12,9 +12,13 @@ import java.util.ArrayList;
 public class StockService {
 
     private final RestClient restClient;
+    private final PortfolioRepository portfolioRepository;
 
-    public StockService() {
+    public StockService(
+        PortfolioRepository portfolioRepository
+    ) {
         this.restClient = RestClient.create();
+        this.portfolioRepository = portfolioRepository;
     }
 
     @Value("${finnhub.api.key}")
@@ -58,55 +62,37 @@ public class StockService {
 
     public List<PortfolioPosition> getPortfolioPositions() {
 
-        List<PortfolioPosition> positions = new ArrayList<>();
+    List<PortfolioPosition> positions =
+            portfolioRepository.getPositions();
 
-        Stock avgo = getStock("AVGO");
-        positions.add(
-                new PortfolioPosition(
-                        "AVGO",
-                        avgo.getPrice(),
-                        5,
-                        300
-                )
+    for (PortfolioPosition position : positions) {
+
+        Stock stock =
+                getStock(position.getSymbol());
+
+        position.setPrice(
+                stock.getPrice()
         );
-
-        Stock nvda = getStock("NVDA");
-        positions.add(
-                new PortfolioPosition(
-                        "NVDA",
-                        nvda.getPrice(),
-                        10,
-                        150
-                )
-        );  
-
-        Stock tsla = getStock("TSLA");
-        positions.add(
-                new PortfolioPosition(
-                        "TSLA",
-                        tsla.getPrice(),
-                        3,
-                        250
-                )
-        );
-
-        double totalValue = 0;
-
-        for (PortfolioPosition p : positions) {
-            totalValue += p.getMarketValue();
-        }
-
-        for (PortfolioPosition p : positions) {
-
-            double allocation =
-                Math.round(
-                    (p.getMarketValue() / totalValue) * 100 * 100
-                ) / 100.0;
-            p.setAllocation(allocation);
-        }
-
-        return positions;
     }
+    
+    double totalValue = 0;
+
+    for (PortfolioPosition position : positions) {
+        totalValue += position.getMarketValue();
+    }
+
+    for (PortfolioPosition position : positions) {
+
+        double allocation =
+                (position.getMarketValue()
+                        / totalValue)
+                        * 100;
+
+        position.setAllocation(allocation);
+    }
+
+    return positions;
+}
     
     public PortfolioSummary getPortfolioSummary() {
 

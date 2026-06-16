@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>AI Stock Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f7fa;
+        }
+
+        h1 {
+            color: #1f2937;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>AI Stock Dashboard</h1>
+
+    <div class="card">
+
+        <h2>
+            Portfolio Value:
+            <span th:text="${#numbers.formatDecimal(summary.totalMarketValue,1,2)}"></span>
+        </h2>
+
+        <h2>
+            Gain/Loss:
+            <span th:text="${#numbers.formatDecimal(summary.totalGainLoss,1,2)}"></span>
+        </h2>
+
+    </div>
+
+    <hr>
+
+    <table border="1">
+
+        <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Market Value</th>
+            <th>Gain/Loss</th>
+            <th>Allocation %</th>
+        </tr>
+
+        <tr th:each="position : ${summary.positions}">
+
+            <td th:text="${position.symbol}"></td>
+
+            <td th:text="${#numbers.formatDecimal(position.price,1,2)}"></td>
+
+            <td th:text="${#numbers.formatDecimal(position.marketValue,1,2)}"></td>
+
+            <td
+            th:text="${#numbers.formatDecimal(position.gainLoss,1,2)}"
+            th:style="${position.gainLoss >= 0}
+            ? 'color:green;font-weight:bold'
+            : 'color:red;font-weight:bold'">
+            </td>
+            
+            <td th:text="${#numbers.formatDecimal(position.allocation,1,2)}"></td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>

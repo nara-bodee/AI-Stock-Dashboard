@@ -63,5 +63,13 @@ public class PortfolioPosition {
         this.allocation = allocation;
     }
 
-    
+    public void setPrice(double price) {
+    this.price = price;
+
+    this.marketValue =
+            price * shares;
+
+    this.gainLoss =
+            marketValue - costBasis;
+    }
 }
