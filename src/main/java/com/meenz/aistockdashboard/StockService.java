@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Service
 public class StockService {
 
@@ -31,5 +34,24 @@ public class StockService {
                         .body(FinnhubResponse.class);
 
         return new Stock(symbol, response.getC());
+    }
+
+    public List<Stock> getPortfolio() {
+
+        List<String> symbols = List.of(
+                "AVGO",
+                "NVDA",
+                "TSLA",
+                "MU",
+                "PLTR"
+        );
+
+        List<Stock> portfolio = new ArrayList<>();
+
+        for (String symbol : symbols) {
+            portfolio.add(getStock(symbol));
+        }
+
+        return portfolio;
     }
 }
