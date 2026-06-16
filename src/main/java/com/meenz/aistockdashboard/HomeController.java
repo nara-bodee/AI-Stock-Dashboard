@@ -24,4 +24,14 @@ public class HomeController {
     public List<Stock> getPortfolio() {
         return stockService.getPortfolio();
     }
+
+    @GetMapping("/portfolio/details")
+    public List<PortfolioPosition> getPortfolioDetails() {
+        return stockService.getPortfolioPositions();
+    }
+
+    @GetMapping("/portfolio/summary")
+    public PortfolioSummary getPortfolioSummary() {
+        return stockService.getPortfolioSummary();
+    }
 }
