@@ -1,0 +1,17 @@
+[ {
+  "symbol" : "AVGO",
+  "shares" : 7,
+  "avgCost" : 328.57142857142856
+}, {
+  "symbol" : "NVDA",
+  "shares" : 10,
+  "avgCost" : 150.0
+}, {
+  "symbol" : "TSLA",
+  "shares" : 3,
+  "avgCost" : 250.0
+}, {
+  "symbol" : "MU",
+  "shares" : 8,
+  "avgCost" : 120.0
+} ]

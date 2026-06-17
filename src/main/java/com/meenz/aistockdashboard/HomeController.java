@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class HomeController {
@@ -33,5 +35,13 @@ public class HomeController {
     @GetMapping("/portfolio/summary")
     public PortfolioSummary getPortfolioSummary() {
         return stockService.getPortfolioSummary();
+    }
+    @PostMapping("/portfolio/buy")
+    public List<PortfolioPosition> buyStock(
+            @RequestBody BuyRequest request) {
+
+        stockService.buyStock(request);
+
+        return stockService.getPortfolioPositions();
     }
 }

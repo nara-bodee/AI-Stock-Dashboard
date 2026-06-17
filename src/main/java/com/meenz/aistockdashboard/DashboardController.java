@@ -9,17 +9,19 @@ public class DashboardController {
 
     private final StockService stockService;
 
-    public DashboardController(StockService stockService) {
+    public DashboardController(
+            StockService stockService
+    ) {
         this.stockService = stockService;
     }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
 
-        PortfolioSummary summary =
-                stockService.getPortfolioSummary();
-
-        model.addAttribute("summary", summary);
+        model.addAttribute(
+                "positions",
+                stockService.getPortfolioPositions()
+        );
 
         return "dashboard";
     }

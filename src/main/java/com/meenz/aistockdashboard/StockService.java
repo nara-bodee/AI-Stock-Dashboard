@@ -5,7 +5,6 @@ import org.springframework.web.client.RestClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
 
 @Service
@@ -117,5 +116,9 @@ public class StockService {
                 totalGainLoss,
                 positions
         );
+    }
+
+    public void buyStock(BuyRequest request) {
+        portfolioRepository.buyStock(request);
     }
 }
