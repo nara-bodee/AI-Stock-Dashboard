@@ -54,4 +54,14 @@ public class HomeController {
 
         return "Sell stock success";
     }
+
+    @GetMapping("/transactions")
+    public List<TransactionRecord> getTransactions() {
+        return stockService.getTransactions();
+    }
+
+    @GetMapping("/performance")
+    public PerformanceSummary getPerformance() {
+        return stockService.getPerformanceSummary();
+    }
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Transaction History</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 40px;
+            background: #f4f6f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Transaction History</h1>
+
+<table>
+
+    <tr>
+        <th>Type</th>
+        <th>Symbol</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Realized Gain</th>
+    </tr>
+
+    <tr th:each="t : ${transactions}">
+
+        <td th:text="${t.type}"></td>
+
+        <td th:text="${t.symbol}"></td>
+
+        <td th:text="${t.shares}"></td>
+
+        <td th:text="${t.price}"></td>
+
+        <td th:text="${t.date}"></td>
+
+        <td th:text="${#numbers.formatDecimal(t.realizedGain,1,2)}"></td>
+
+    </tr>
+
+</table>
+
+</body>
+
+</html>

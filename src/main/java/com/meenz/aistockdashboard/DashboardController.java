@@ -25,4 +25,15 @@ public class DashboardController {
 
         return "dashboard";
     }
+
+    @GetMapping("/dashboard/transactions")
+    public String transactions(Model model) {
+
+        model.addAttribute(
+                "transactions",
+                stockService.getTransactions()
+        );
+
+        return "transactions";
+    }
 }

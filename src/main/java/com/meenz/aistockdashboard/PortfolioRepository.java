@@ -200,4 +200,19 @@ public class PortfolioRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public List<TransactionRecord> getTransactions() {
+
+        try {
+            File file = new File("src/main/resources/transactions.json");
+    
+            return mapper.readValue(
+                    file,
+                    new TypeReference<List<TransactionRecord>>() {}
+            );
+    
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
