@@ -137,4 +137,67 @@ public class PortfolioRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void sellStock(SellRequest request) {
+
+        try {
+            File file = new File(filePath);
+    
+            List<PortfolioRecord> records =
+                    mapper.readValue(
+                            file,
+                            new TypeReference<List<PortfolioRecord>>() {}
+                    );
+    
+            boolean found = false;
+    
+            for (PortfolioRecord record : records) {
+    
+                if (record.getSymbol().equalsIgnoreCase(request.getSymbol())) {
+    
+                    found = true;
+    
+                    if (request.getShares() > record.getShares()) {
+                        throw new RuntimeException("Not enough shares to sell");
+                    }
+    
+                    int newShares =
+                            record.getShares() - request.getShares();
+    
+                    double realizedGain =
+                            (request.getPrice() - record.getAvgCost())
+                                    * request.getShares();
+    
+                    if (newShares == 0) {
+                        records.remove(record);
+                    } else {
+                        record.setShares(newShares);
+                    }
+    
+                    TransactionRecord transaction =
+                            new TransactionRecord();
+    
+                    transaction.setType("SELL");
+                    transaction.setSymbol(request.getSymbol().toUpperCase());
+                    transaction.setShares(request.getShares());
+                    transaction.setPrice(request.getPrice());
+                    transaction.setRealizedGain(realizedGain);
+    
+                    saveTransaction(transaction);
+    
+                    break;
+                }
+            }
+    
+            if (!found) {
+                throw new RuntimeException("Stock not found in portfolio");
+            }
+    
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(file, records);
+    
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

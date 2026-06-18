@@ -5,4 +5,11 @@
   "price" : 200.0,
   "date" : "2026-06-18",
   "realizedGain" : 0.0
+}, {
+  "type" : "SELL",
+  "symbol" : "NVDA",
+  "shares" : 10,
+  "price" : 250.0,
+  "date" : "2026-06-18",
+  "realizedGain" : 916.6666666666669
 } ]

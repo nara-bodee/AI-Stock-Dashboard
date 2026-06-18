@@ -121,4 +121,8 @@ public class StockService {
     public void buyStock(BuyRequest request) {
         portfolioRepository.buyStock(request);
     }
+
+    public void sellStock(SellRequest request) {
+        portfolioRepository.sellStock(request);
+    }
 }

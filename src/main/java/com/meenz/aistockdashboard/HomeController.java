@@ -45,4 +45,13 @@ public class HomeController {
 
         return "Buy stock success";
     }
+
+    @PostMapping("/portfolio/sell")
+    public String sellStock(
+            @RequestBody SellRequest request) {
+
+        stockService.sellStock(request);
+
+        return "Sell stock success";
+    }
 }
