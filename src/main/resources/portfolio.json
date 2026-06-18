@@ -1,11 +1,11 @@
 [ {
   "symbol" : "AVGO",
   "shares" : 7,
-  "avgCost" : 328.57142857142856
+  "avgCost" : 328.571428571429
 }, {
   "symbol" : "NVDA",
-  "shares" : 10,
-  "avgCost" : 150.0
+  "shares" : 12,
+  "avgCost" : 158.33333333333331
 }, {
   "symbol" : "TSLA",
   "shares" : 3,

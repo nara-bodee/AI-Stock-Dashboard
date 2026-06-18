@@ -36,12 +36,13 @@ public class HomeController {
     public PortfolioSummary getPortfolioSummary() {
         return stockService.getPortfolioSummary();
     }
+    
     @PostMapping("/portfolio/buy")
-    public List<PortfolioPosition> buyStock(
+    public String buyStock(
             @RequestBody BuyRequest request) {
 
         stockService.buyStock(request);
 
-        return stockService.getPortfolioPositions();
+        return "Buy stock success";
     }
 }

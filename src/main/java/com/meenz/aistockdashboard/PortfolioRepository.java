@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Repository
 public class PortfolioRepository {
@@ -94,6 +96,43 @@ public class PortfolioRepository {
             mapper.writerWithDefaultPrettyPrinter()
                     .writeValue(file, records);
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        TransactionRecord transaction = new TransactionRecord();
+
+        transaction.setType("BUY");
+        transaction.setSymbol(request.getSymbol().toUpperCase());
+        transaction.setShares(request.getShares());
+        transaction.setPrice(request.getPrice());
+        transaction.setRealizedGain(0);
+
+        saveTransaction(transaction);
+    }
+
+    public void saveTransaction(TransactionRecord transaction) {
+
+        try {
+            File file = new File("src/main/resources/transactions.json");
+    
+            List<TransactionRecord> transactions;
+    
+            if (file.length() == 0) {
+                transactions = new ArrayList<>();
+            } else {
+                transactions = mapper.readValue(
+                        file,
+                        new TypeReference<List<TransactionRecord>>() {}
+                );
+            }
+    
+            transaction.setDate(LocalDate.now().toString());
+    
+            transactions.add(transaction);
+    
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(file, transactions);
+    
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

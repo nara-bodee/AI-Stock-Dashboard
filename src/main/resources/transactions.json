@@ -1,0 +1,8 @@
+[ {
+  "type" : "BUY",
+  "symbol" : "NVDA",
+  "shares" : 1,
+  "price" : 200.0,
+  "date" : "2026-06-18",
+  "realizedGain" : 0.0
+} ]
