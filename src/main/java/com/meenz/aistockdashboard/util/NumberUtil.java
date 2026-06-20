@@ -1,4 +1,4 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.util;
 
 public class NumberUtil {
 

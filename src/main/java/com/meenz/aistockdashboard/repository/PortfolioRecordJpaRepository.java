@@ -1,6 +1,8 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.meenz.aistockdashboard.entity.PortfolioRecordEntity;
 
 import java.util.Optional;
 

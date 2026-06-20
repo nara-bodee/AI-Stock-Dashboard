@@ -1,4 +1,4 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.model;
 
 public class Stock {
 

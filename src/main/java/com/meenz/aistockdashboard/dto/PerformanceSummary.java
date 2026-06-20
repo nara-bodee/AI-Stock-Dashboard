@@ -1,4 +1,6 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.dto;
+
+import com.meenz.aistockdashboard.util.NumberUtil;
 
 public class PerformanceSummary {
 

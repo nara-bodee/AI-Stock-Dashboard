@@ -1,7 +1,6 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.factory.annotation.Value;
 
 
@@ -13,16 +12,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.meenz.aistockdashboard.dto.BuyRequest;
+import com.meenz.aistockdashboard.dto.PerformanceSummary;
+import com.meenz.aistockdashboard.dto.PortfolioSummary;
+import com.meenz.aistockdashboard.dto.SellRequest;
+import com.meenz.aistockdashboard.dto.TransactionRecord;
+import com.meenz.aistockdashboard.model.PortfolioPosition;
+import com.meenz.aistockdashboard.model.Stock;
+import com.meenz.aistockdashboard.repository.PortfolioRepository;
+
 @Service
 public class StockService {
 
-    private final RestTemplate restTemplate;
     private final PortfolioRepository portfolioRepository;
 
     public StockService(
         PortfolioRepository portfolioRepository
     ) {
-        this.restTemplate = new RestTemplate();
         this.portfolioRepository = portfolioRepository;
     }
 

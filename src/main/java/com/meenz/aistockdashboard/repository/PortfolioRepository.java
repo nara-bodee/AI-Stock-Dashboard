@@ -1,10 +1,17 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.repository;
 
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.meenz.aistockdashboard.dto.BuyRequest;
+import com.meenz.aistockdashboard.dto.SellRequest;
+import com.meenz.aistockdashboard.dto.TransactionRecord;
+import com.meenz.aistockdashboard.entity.PortfolioRecordEntity;
+import com.meenz.aistockdashboard.entity.TransactionEntity;
+import com.meenz.aistockdashboard.model.PortfolioPosition;
 
 @Repository
 public class PortfolioRepository {

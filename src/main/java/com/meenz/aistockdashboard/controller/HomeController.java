@@ -1,4 +1,4 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.controller;
 
 import java.util.List;
 
@@ -7,6 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.meenz.aistockdashboard.dto.BuyRequest;
+import com.meenz.aistockdashboard.dto.PerformanceSummary;
+import com.meenz.aistockdashboard.dto.PortfolioSummary;
+import com.meenz.aistockdashboard.dto.SellRequest;
+import com.meenz.aistockdashboard.dto.TransactionRecord;
+import com.meenz.aistockdashboard.model.PortfolioPosition;
+import com.meenz.aistockdashboard.model.Stock;
+import com.meenz.aistockdashboard.service.StockService;
 
 @RestController
 public class HomeController {

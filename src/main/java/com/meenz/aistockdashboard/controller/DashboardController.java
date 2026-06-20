@@ -1,8 +1,10 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.meenz.aistockdashboard.service.StockService;
 
 @Controller
 public class DashboardController {

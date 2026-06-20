@@ -1,4 +1,4 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

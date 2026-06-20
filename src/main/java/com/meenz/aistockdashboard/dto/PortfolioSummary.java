@@ -1,6 +1,8 @@
-package com.meenz.aistockdashboard;
+package com.meenz.aistockdashboard.dto;
 
 import java.util.List;
+
+import com.meenz.aistockdashboard.model.PortfolioPosition;
 
 public class PortfolioSummary {
 
