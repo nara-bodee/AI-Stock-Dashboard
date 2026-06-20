@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ai-stock-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: aistockdb
+      MYSQL_USER: aistock
+      MYSQL_PASSWORD: aistock123
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

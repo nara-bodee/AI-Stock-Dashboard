@@ -169,12 +169,20 @@ public class StockService {
             realizedGain += t.getRealizedGain();
         }
     
-        int tradeCount = transactions.size();
+        double unrealizedGain =
+                portfolioSummary.getTotalGainLoss();
+    
+        double totalGain =
+                realizedGain + unrealizedGain;
+    
+        int tradeCount =
+                transactions.size();
     
         return new PerformanceSummary(
                 portfolioSummary.getTotalMarketValue(),
-                portfolioSummary.getTotalGainLoss(),
+                unrealizedGain,
                 realizedGain,
+                totalGain,
                 tradeCount
         );
     }
